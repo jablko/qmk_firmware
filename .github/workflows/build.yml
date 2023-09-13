@@ -1,0 +1,20 @@
+on:
+  - pull_request
+  - push
+  - workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - run: qmk compile --keymap manna-harbour_miryoku --keyboard pocket_reform
+      - uses: actions/upload-artifact@v3
+        with:
+          name: firmware
+          path: |
+            *.bin
+            *.hex
+            *.uf2
+    container: ghcr.io/qmk/qmk_cli
