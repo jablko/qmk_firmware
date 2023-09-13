@@ -2,11 +2,11 @@
 
 ![pocket_reform](imgur.com image replace me!)
 
-*A short description of the keyboard/project*
+_A short description of the keyboard/project_
 
-* Keyboard Maintainer: [Jack Bates](https://github.com/jablko)
-* Hardware Supported: *The PCBs, controllers supported*
-* Hardware Availability: *Links to where you can find this hardware*
+- Keyboard Maintainer: [Jack Bates](https://github.com/jablko)
+- Hardware Supported: _The PCBs, controllers supported_
+- Hardware Availability: _Links to where you can find this hardware_
 
 Make example for this keyboard (after setting up your build environment):
 
@@ -22,6 +22,6 @@ See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_to
 
 Enter the bootloader in 3 ways:
 
-* **Bootmagic reset**: Hold down the key at (0,0) in the matrix (usually the top left key or Escape) and plug in the keyboard
-* **Physical reset button**: Briefly press the button on the back of the PCB - some may have pads you must short instead
-* **Keycode in layout**: Press the key mapped to `QK_BOOT` if it is available
+- **Bootmagic reset**: Hold down the key at (0,0) in the matrix (usually the top left key or Escape) and plug in the keyboard
+- **Physical reset button**: Briefly press the button on the back of the PCB - some may have pads you must short instead
+- **Keycode in layout**: Press the key mapped to `QK_BOOT` if it is available
