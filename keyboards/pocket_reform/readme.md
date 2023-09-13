@@ -1,12 +1,19 @@
-# pocket_reform
+# MNT Pocket Reform Keyboard
 
-![pocket_reform](imgur.com image replace me!)
+![MNT Pocket Reform Keyboard](https://www.crowdsupply.com/img/3569/pocket-reform-writing-article.jpg)
 
-_A short description of the keyboard/project_
+seven-inch mini Reform laptop that remains fully open source
+RGB backlight, individually programmable
+Optical 15 mm trackball
+monochrome OLED above the keyboard
+https://mntre.com/reform.html#mnt-pocket-reform-reforms-smaller-sibling
+https://source.mnt.re/reform/pocket-reform/-/tree/main/pocket-reform-keyboard-kailh-ortho
+https://www.crowdsupply.com/mnt/pocket-reform#mechanical-keyboard-with-rgb-backlight
+https://www.crowdsupply.com/mnt/pocket-reform/updates/a-technical-walkthrough#input-module
 
 - Keyboard Maintainer: [Jack Bates](https://github.com/jablko)
-- Hardware Supported: _The PCBs, controllers supported_
-- Hardware Availability: _Links to where you can find this hardware_
+- Hardware Supported: MNT Pocket Reform Keyboard powered by a [Raspberry Pi RP2040](https://www.raspberrypi.com/documentation/microcontrollers/rp2040.html) microcontroller
+- Hardware Availability: On [Crowd Supply](https://www.crowdsupply.com/mnt/pocket-reform#mechanical-keyboard-with-rgb-backlight) for now or as [Open Hardware](https://source.mnt.re/reform/pocket-reform/-/tree/main/pocket-reform-keyboard-kailh-ortho), but will become available in our shop in Winter 2023
 
 Make example for this keyboard (after setting up your build environment):
 

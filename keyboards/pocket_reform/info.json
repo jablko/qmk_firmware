@@ -1,6 +1,6 @@
 {
-    "manufacturer": "Jack Bates",
-    "keyboard_name": "pocket_reform",
+    "manufacturer": "MNT",
+    "keyboard_name": "Pocket Reform Keyboard",
     "maintainer": "jablko",
     "bootloader": "rp2040",
     "diode_direction": "COL2ROW",
@@ -13,16 +13,17 @@
         "nkro": true
     },
     "matrix_pins": {
-        "cols": ["C2", "C2", "C2", "C2", "C2", "C2", "C2", "C2", "C2", "C2", "C2", "C2"],
-        "rows": ["D1", "D1", "D1", "D1", "D1"]
+        "cols": ["GP6", "GP7", "GP8", "GP9", "GP10", "GP11", "GP12", "GP13", "GP14", "GP15", "GP16", "GP17"],
+        "rows": ["GP19", "GP20", "GP23", "GP22", "GP21", "GP18"]
     },
     "processor": "RP2040",
-    "url": "",
+    "url": "https://source.mnt.re/reform/pocket-reform/-/tree/main/pocket-reform-keyboard-kailh-ortho",
     "usb": {
         "device_version": "1.0.0",
-        "pid": "0x0000",
+        "pid": "0xC4A6",
         "vid": "0xFEED"
     },
+    "community_layouts": ["ortho_5x12"],
     "layouts": {
         "LAYOUT_ortho_5x12": {
             "layout": [
