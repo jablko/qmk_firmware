@@ -18,3 +18,6 @@
 //#define NO_ACTION_LAYER
 //#define NO_ACTION_TAPPING
 //#define NO_ACTION_ONESHOT
+
+#define I2C1_SDA_PIN GP0
+#define I2C1_SCL_PIN GP1
