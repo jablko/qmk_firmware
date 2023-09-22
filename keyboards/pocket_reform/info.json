@@ -11,18 +11,28 @@
         "extrakey": true,
         "mousekey": true,
         "nkro": true,
-        "pointing_device": true
+        "pointing_device": true,
+        "rgb_matrix": true
     },
     "matrix_pins": {
         "cols": ["GP6", "GP7", "GP8", "GP9", "GP10", "GP11", "GP12", "GP13", "GP14", "GP15", "GP16", "GP17"],
         "rows": ["GP19", "GP20", "GP23", "GP22", "GP21", "GP18"]
     },
     "processor": "RP2040",
+    "rgb_matrix": {
+        "driver": "ws2812",
+        "layout": [],
+        "led_count": 64
+    },
     "url": "https://source.mnt.re/reform/pocket-reform/-/tree/main/pocket-reform-keyboard-kailh-ortho",
     "usb": {
         "device_version": "1.0.0",
         "pid": "0xC4A6",
         "vid": "0xFEED"
+    },
+    "ws2812": {
+        "driver": "vendor",
+        "pin": "GP24"
     },
     "community_layouts": ["ortho_5x12"],
     "layouts": {

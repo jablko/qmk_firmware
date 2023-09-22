@@ -61,3 +61,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
     // clang-format on
 };
+
+bool drag_hue_val = false;
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    drag_hue_val = get_highest_layer(state) == 1;
+    return state;
+}
+
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    if (drag_hue_val) {
+        HSV hsv = rgb_matrix_get_hsv();
+        rgb_matrix_sethsv(hsv.h + mouse_report.x, hsv.s, hsv.v + mouse_report.y);
+        mouse_report.x = 0;
+        mouse_report.y = 0;
+    }
+    return mouse_report;
+}
