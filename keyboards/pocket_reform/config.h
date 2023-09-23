@@ -21,3 +21,6 @@
 
 #define I2C1_SDA_PIN GP0
 #define I2C1_SCL_PIN GP1
+
+#define SD1_TX_PIN GP4
+#define SD1_RX_PIN GP5

@@ -2,7 +2,9 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include "pocket_reform.h"
+#include <stdio.h>
 #include "i2c_master.h"
+#include "uart.h"
 
 #define PAT9125_ADDR 0x79
 #define REG_DELTA_X_LO 0x03
@@ -27,14 +29,30 @@ combo_t* combo_get(uint16_t combo_idx) {
 }
 #endif
 
-bool drag_scroll = false;
-bool drag_volume = false;
-bool drag_hue    = false;
-bool drag_sat    = false;
-bool drag_val    = false;
+bool soc_power_on = false;
+bool drag_scroll  = false;
+bool drag_volume  = false;
+bool drag_hue     = false;
+bool drag_sat     = false;
+bool drag_val     = false;
 
 bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
+        case QK_BOOT:
+            if (record->event.pressed) {
+                if (soc_power_on) {
+                    // char data[] = "\r\n0p\r\n";
+                    // uart_transmit((uint8_t*)data, strlen(data));
+                    rgb_matrix_enable();
+                    soc_power_on = false;
+                } else {
+                    // char data[] = "\r\n1p\r\n";
+                    // uart_transmit((uint8_t*)data, strlen(data));
+                    rgb_matrix_disable();
+                    soc_power_on = true;
+                }
+            }
+            break;
         case DRAG_SCROLL:
             if (record->tap.count == 0) {
                 drag_scroll = record->event.pressed;
@@ -125,4 +143,13 @@ void pointing_device_driver_set_cpi(uint16_t cpi) {
     }
     uint8_t data[] = {cpi, cpi};
     i2c_writeReg(PAT9125_ADDR << 1, REG_RES_X, data, sizeof(data), I2C_TIMEOUT);
+}
+
+void on_sysctl_rx(void) {
+    uint8_t sysctl_data[] = {0, 0, 0, 0};
+    uart_receive(sysctl_data, sizeof(sysctl_data) - 1);
+    int  battery_level = atoi((char*)sysctl_data);
+    char oled_data[]   = "\0\0\0\0";
+    snprintf(oled_data, sizeof(oled_data), "%d%%", battery_level);
+    oled_write(oled_data, false);
 }
