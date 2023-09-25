@@ -27,19 +27,37 @@ combo_t* combo_get(uint16_t combo_idx) {
 }
 #endif
 
-bool set_scrolling = false;
+bool drag_scroll = false;
+bool drag_volume = false;
 
 bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
-    if (keycode == DRAG_SCROLL) {
-        set_scrolling = record->event.pressed;
+    switch (keycode) {
+        case DRAG_SCROLL:
+            if (record->tap.count == 0) {
+                drag_scroll = record->event.pressed;
+            } else if (record->event.pressed) {
+                drag_scroll = !drag_scroll;
+            }
+            break;
+        case KC_VOLU:
+        case KC_VOLD:
+            if (record->tap.count == 0) {
+                drag_volume = record->event.pressed;
+                return false;
+            }
+            break;
     }
     return process_record_user(keycode, record);
 }
 
 report_mouse_t pointing_device_task_kb(report_mouse_t mouse_report) {
-    if (set_scrolling) {
+    if (drag_scroll) {
         mouse_report.h = mouse_report.x;
         mouse_report.v = mouse_report.y;
+        mouse_report.x = 0;
+        mouse_report.y = 0;
+    } else if (drag_volume) {
+        tap_code(mouse_report.y > 0 ? KC_VOLU : KC_VOLD);
         mouse_report.x = 0;
         mouse_report.y = 0;
     }
