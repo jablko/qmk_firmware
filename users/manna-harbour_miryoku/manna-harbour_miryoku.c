@@ -79,4 +79,6 @@ combo_t key_combos[] = {
   #endif
   COMBO(thumbcombos_fun, KC_APP)
 };
+#elif defined (COMBO_ENABLE)
+combo_t key_combos[] = {};
 #endif

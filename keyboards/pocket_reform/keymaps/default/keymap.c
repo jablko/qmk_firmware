@@ -3,6 +3,10 @@
 
 #include QMK_KEYBOARD_H
 
+#if defined(COMBO_ENABLE)
+combo_t key_combos[] = {};
+#endif
+
 enum {
     TD_BOOT,
 };

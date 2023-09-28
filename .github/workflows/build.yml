@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: true
-      - run: qmk compile --keymap manna-harbour_miryoku --keyboard pocket_reform
+      - run: qmk compile --env COMBO_ENABLE=yes --keymap manna-harbour_miryoku --keyboard pocket_reform
       - uses: actions/upload-artifact@v3
         with:
           name: firmware

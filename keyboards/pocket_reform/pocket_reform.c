@@ -9,6 +9,24 @@
 #define REG_RES_X 0x0D
 #define CPI_MAX 1275
 
+#if defined(COMBO_ENABLE)
+#    include "keymap_introspection.h"
+
+const uint16_t PROGMEM combo_btn3[] = {KC_BTN1, KC_BTN2, COMBO_END};
+
+combo_t key_combos_kb[] = {
+    COMBO(combo_btn3, KC_BTN3),
+};
+
+uint16_t combo_count(void) {
+    return combo_count_raw() + sizeof(key_combos_kb) / sizeof(combo_t);
+}
+
+combo_t* combo_get(uint16_t combo_idx) {
+    return combo_idx < combo_count_raw() ? combo_get_raw(combo_idx) : &key_combos_kb[combo_idx - combo_count_raw()];
+}
+#endif
+
 bool set_scrolling = false;
 
 bool process_record_kb(uint16_t keycode, keyrecord_t* record) {

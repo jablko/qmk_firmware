@@ -84,7 +84,10 @@ __attribute__((weak)) uint16_t combo_count(void) {
 }
 
 combo_t* combo_get_raw(uint16_t combo_idx) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warray-bounds"
     return &key_combos[combo_idx];
+#pragma GCC diagnostic pop
 }
 __attribute__((weak)) combo_t* combo_get(uint16_t combo_idx) {
     return combo_get_raw(combo_idx);
