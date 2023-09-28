@@ -29,6 +29,9 @@ combo_t* combo_get(uint16_t combo_idx) {
 
 bool drag_scroll = false;
 bool drag_volume = false;
+bool drag_hue    = false;
+bool drag_sat    = false;
+bool drag_val    = false;
 
 bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
@@ -46,6 +49,27 @@ bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
                 return false;
             }
             break;
+        case RGB_HUI:
+        case RGB_HUD:
+            if (record->tap.count == 0) {
+                drag_hue = record->event.pressed;
+                return false;
+            }
+            break;
+        case RGB_SAI:
+        case RGB_SAD:
+            if (record->tap.count == 0) {
+                drag_sat = record->event.pressed;
+                return false;
+            }
+            break;
+        case RGB_VAI:
+        case RGB_VAD:
+            if (record->tap.count == 0) {
+                drag_val = record->event.pressed;
+                return false;
+            }
+            break;
     }
     return process_record_user(keycode, record);
 }
@@ -58,6 +82,21 @@ report_mouse_t pointing_device_task_kb(report_mouse_t mouse_report) {
         mouse_report.y = 0;
     } else if (drag_volume) {
         tap_code(mouse_report.y > 0 ? KC_VOLU : KC_VOLD);
+        mouse_report.x = 0;
+        mouse_report.y = 0;
+    } else if (drag_hue) {
+        HSV hsv = rgb_matrix_get_hsv();
+        rgb_matrix_sethsv(hsv.h + mouse_report.y, hsv.s, hsv.v);
+        mouse_report.x = 0;
+        mouse_report.y = 0;
+    } else if (drag_sat) {
+        HSV hsv = rgb_matrix_get_hsv();
+        rgb_matrix_sethsv(hsv.h, hsv.s + mouse_report.y, hsv.v);
+        mouse_report.x = 0;
+        mouse_report.y = 0;
+    } else if (drag_val) {
+        HSV hsv = rgb_matrix_get_hsv();
+        rgb_matrix_sethsv(hsv.h, hsv.s, hsv.v + mouse_report.y);
         mouse_report.x = 0;
         mouse_report.y = 0;
     }
